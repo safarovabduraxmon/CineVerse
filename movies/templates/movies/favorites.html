@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+    <title>Избранное — CineVerse</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+
+        background: radial-gradient(
+            circle at top right,
+            rgba(229, 9, 20, 0.12),
+            transparent 32%
+          ),
+          #050505;
+
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      /* NAVBAR */
+
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        background: rgba(5, 5, 5, 0.9);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+        backdrop-filter: blur(20px);
+      }
+
+      .brand {
+        color: #e50914;
+        font-size: 30px;
+        font-weight: 900;
+        text-decoration: none;
+        letter-spacing: -1px;
+
+        transition: 0.3s;
+      }
+
+      .brand:hover {
+        color: #ff2935;
+      }
+
+      .nav-btn {
+        border-radius: 10px;
+        font-weight: 700;
+      }
+
+      /* PAGE */
+
+      .page {
+        padding: 65px 0 100px;
+      }
+
+      .page-header {
+        margin-bottom: 42px;
+      }
+
+      .page-title {
+        margin: 0;
+
+        font-size: clamp(38px, 5vw, 52px);
+        font-weight: 900;
+        letter-spacing: -1.5px;
+      }
+
+      .page-title span {
+        color: #e50914;
+      }
+
+      .subtitle {
+        margin-top: 12px;
+        margin-bottom: 0;
+
+        color: #888;
+        font-size: 16px;
+      }
+
+      .count-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+
+        margin-top: 20px;
+        padding: 8px 13px;
+
+        color: #ddd;
+
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        border-radius: 999px;
+
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      /* CARD */
+
+      .movie-card {
+        position: relative;
+
+        height: 100%;
+        overflow: hidden;
+
+        background: linear-gradient(145deg, #191919, #0f0f0f);
+
+        border: 1px solid #292929;
+        border-radius: 18px;
+
+        transition: transform 0.35s ease, border-color 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+
+      .movie-card:hover {
+        transform: translateY(-10px);
+
+        border-color: #e50914;
+
+        box-shadow: 0 25px 55px rgba(0, 0, 0, 0.65),
+          0 0 30px rgba(229, 9, 20, 0.12);
+      }
+
+      /* POSTER */
+
+      .poster-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .poster {
+        width: 100%;
+        height: 450px;
+
+        object-fit: cover;
+        display: block;
+
+        background: #222;
+
+        transition: transform 0.45s ease;
+      }
+
+      .movie-card:hover .poster {
+        transform: scale(1.045);
+      }
+
+      /* DARK OVERLAY */
+
+      .poster-overlay {
+        position: absolute;
+        inset: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(0, 0, 0, 0.52);
+
+        opacity: 0;
+
+        transition: 0.3s ease;
+      }
+
+      .movie-card:hover .poster-overlay {
+        opacity: 1;
+      }
+
+      .play-icon {
+        width: 68px;
+        height: 68px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: #e50914;
+        color: white;
+
+        font-size: 29px;
+
+        transform: scale(0.72);
+
+        box-shadow: 0 12px 35px rgba(229, 9, 20, 0.4);
+
+        transition: 0.3s ease;
+      }
+
+      .movie-card:hover .play-icon {
+        transform: scale(1);
+      }
+
+      /* FAVORITE */
+
+      .favorite-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 5;
+
+        width: 44px;
+        height: 44px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: rgba(0, 0, 0, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+
+        backdrop-filter: blur(10px);
+
+        font-size: 19px;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+      }
+
+      /* CONTENT */
+
+      .movie-content {
+        padding: 20px;
+      }
+
+      .movie-title {
+        min-height: 52px;
+
+        font-size: 21px;
+        font-weight: 900;
+        line-height: 1.25;
+      }
+
+      .movie-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+
+        margin-top: 10px;
+
+        color: #888;
+        font-size: 13px;
+      }
+
+      .meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .rating {
+        color: #ffc107;
+        font-weight: 900;
+      }
+
+      .rating-value {
+        color: white;
+        margin-left: 4px;
+      }
+
+      .detail-btn {
+        width: 100%;
+
+        margin-top: 17px;
+        padding: 11px;
+
+        border: none;
+        border-radius: 9px;
+
+        background: #e50914;
+        color: white;
+
+        font-weight: 800;
+
+        transition: 0.25s;
+      }
+
+      .detail-btn:hover {
+        background: #ff1824;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* EMPTY */
+
+      .empty {
+        padding: 90px 25px;
+
+        text-align: center;
+
+        background: radial-gradient(
+            circle at center,
+            rgba(229, 9, 20, 0.08),
+            transparent 45%
+          ),
+          #101010;
+
+        border: 1px solid #282828;
+        border-radius: 22px;
+
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      .empty-icon {
+        margin-bottom: 20px;
+        font-size: 65px;
+      }
+
+      .empty h2 {
+        margin-bottom: 10px;
+        font-weight: 900;
+      }
+
+      .empty p {
+        max-width: 500px;
+        margin: 0 auto 25px;
+
+        color: #888;
+        line-height: 1.7;
+      }
+
+      .empty-btn {
+        padding: 12px 22px;
+
+        background: #e50914;
+        border: none;
+        border-radius: 10px;
+
+        color: white;
+        font-weight: 800;
+      }
+
+      .empty-btn:hover {
+        background: #ff1824;
+        color: white;
+      }
+
+      /* FOOTER */
+
+      footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: #050505;
+      }
+
+      /* MOBILE */
+
+      @media (max-width: 768px) {
+        .page {
+          padding: 45px 0 70px;
+        }
+
+        .page-header {
+          margin-bottom: 30px;
+        }
+
+        .poster {
+          height: 500px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .brand {
+          font-size: 25px;
+        }
+
+        .poster {
+          height: 460px;
+        }
+
+        .movie-title {
+          font-size: 20px;
+        }
+      }
+    </style>
+    
+  </head>
+
+  <body>
+    
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-dark">
+      <div class="container py-3">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <a href="/" class="brand"> CineVerse </a>
+
+          <div class="d-flex align-items-center gap-2">
+            <a href="/" class="btn btn-outline-light nav-btn">
+              <i class="bi bi-film"></i>
+              Фильмы
+            </a>
+
+            <a href="{% url 'profile' %}" class="btn btn-outline-light nav-btn">
+              <i class="bi bi-person-circle"></i>
+              {{ user.username }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE -->
+
+    <main class="container page">
+      <div class="page-header">
+        <h1 class="page-title"><span>❤️</span> Избранное</h1>
+
+        <p class="subtitle">Все фильмы, которые вы сохранили для просмотра</p>
+
+        {% if movies %}
+        <div class="count-badge">
+          <i class="bi bi-heart-fill"></i>
+          {{ movies|length }} фильм(ов)
+        </div>
+        {% endif %}
+      </div>
+
+      {% if movies %}
+
+      <div class="row g-4">
+        {% for movie in movies %}
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="movie-card">
+            <div class="poster-wrap">
+              <img
+                src="{{ movie.poster }}"
+                alt="{{ movie.title }}"
+                class="poster"
+              />
+
+              <div class="favorite-badge">❤️</div>
+
+              <div class="poster-overlay">
+                <div class="play-icon">
+                  <i class="bi bi-play-fill"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="movie-content">
+              <div class="movie-title">{{ movie.title }}</div>
+
+              <div class="movie-meta">
+                <span class="meta-item">
+                  <i class="bi bi-film"></i>
+                  {{ movie.genre }}
+                </span>
+
+                <span>•</span>
+
+                <span class="meta-item">
+                  <i class="bi bi-clock"></i>
+                  {{ movie.duration }} мин
+                </span>
+              </div>
+
+              <div class="rating mt-3">
+                ★★★★★
+
+                <span class="rating-value"> {{ movie.rating }} </span>
+              </div>
+
+              <a
+                href="{% url 'movie_detail' movie.id %}"
+                class="btn detail-btn"
+              >
+                <i class="bi bi-play-fill"></i>
+                Подробнее
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+
+      {% else %}
+
+      <div class="empty">
+        <div class="empty-icon">🤍</div>
+
+        <h2>Избранное пока пусто</h2>
+
+        <p>
+          Добавляйте понравившиеся фильмы в избранное, и они появятся здесь.
+        </p>
+
+        <a href="/" class="btn empty-btn">
+          <i class="bi bi-film"></i>
+          Смотреть фильмы
+        </a>
+      </div>
+
+      {% endif %}
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="text-center py-4">
+      <p class="text-secondary mb-0">© 2026 CineVerse. Все права защищены.</p>
+    </footer>
+    
+  </body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+    <title>Вход — CineVerse</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 25px;
+
+        background: radial-gradient(
+            circle at 20% 20%,
+            rgba(229, 9, 20, 0.16),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(229, 9, 20, 0.1),
+            transparent 30%
+          ),
+          #050505;
+
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+      }
+
+      .login-wrapper {
+        width: 100%;
+        max-width: 460px;
+      }
+
+      .brand-top {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .brand {
+        color: #e50914;
+        font-size: 34px;
+        font-weight: 900;
+        text-decoration: none;
+        letter-spacing: -1.5px;
+      }
+
+      .brand span {
+        color: white;
+      }
+
+      .cinema-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+
+        margin-top: 10px;
+        padding: 7px 12px;
+
+        border-radius: 999px;
+
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+
+        color: #888;
+
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .login-box {
+        position: relative;
+
+        width: 100%;
+        padding: 38px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(25, 25, 25, 0.94),
+          rgba(10, 10, 10, 0.96)
+        );
+
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 24px;
+
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7),
+          0 0 40px rgba(229, 9, 20, 0.05);
+
+        backdrop-filter: blur(20px);
+      }
+
+      .login-box::before {
+        content: "";
+
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        top: 0;
+
+        height: 1px;
+
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(229, 9, 20, 0.8),
+          transparent
+        );
+      }
+
+      .box-title {
+        text-align: center;
+
+        font-size: 29px;
+        font-weight: 900;
+
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        text-align: center;
+
+        color: #888;
+
+        margin-bottom: 30px;
+
+        font-size: 14px;
+      }
+
+      .form-label {
+        color: #dcdcdc;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .input-wrap {
+        position: relative;
+      }
+
+      .input-icon {
+        position: absolute;
+
+        top: 50%;
+        left: 15px;
+
+        transform: translateY(-50%);
+
+        color: #666;
+
+        pointer-events: none;
+
+        transition: 0.25s;
+      }
+
+      .form-control {
+        height: 50px;
+
+        padding: 12px 15px 12px 44px;
+
+        background: rgba(255, 255, 255, 0.045);
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-radius: 11px;
+
+        color: white;
+      }
+
+      .form-control::placeholder {
+        color: #666;
+      }
+
+      .form-control:focus {
+        background: rgba(255, 255, 255, 0.06);
+
+        color: white;
+
+        border-color: #e50914;
+
+        box-shadow: 0 0 0 0.2rem rgba(229, 9, 20, 0.1),
+          0 8px 25px rgba(0, 0, 0, 0.25);
+      }
+
+      .form-control:focus + .input-icon {
+        color: #e50914;
+      }
+
+      .btn-login {
+        height: 52px;
+
+        border: none;
+        border-radius: 11px;
+
+        background: linear-gradient(135deg, #e50914, #b20710);
+
+        color: white;
+
+        font-size: 15px;
+        font-weight: 900;
+
+        box-shadow: 0 12px 30px rgba(229, 9, 20, 0.22);
+
+        transition: 0.3s;
+      }
+
+      .btn-login:hover {
+        background: linear-gradient(135deg, #ff1824, #c40812);
+
+        color: white;
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 18px 40px rgba(229, 9, 20, 0.32);
+      }
+
+      .error {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        background: rgba(229, 9, 20, 0.09);
+
+        border: 1px solid rgba(229, 9, 20, 0.3);
+
+        color: #ff9999;
+
+        padding: 12px 14px;
+
+        border-radius: 11px;
+
+        margin-bottom: 20px;
+
+        font-size: 13px;
+      }
+
+      .register-link {
+        margin-top: 25px;
+
+        text-align: center;
+
+        color: #777;
+
+        font-size: 14px;
+      }
+
+      .register-link a {
+        color: #e50914;
+
+        text-decoration: none;
+
+        font-weight: 800;
+
+        transition: 0.25s;
+      }
+
+      .register-link a:hover {
+        color: #ff2935;
+      }
+
+      .back-home {
+        display: block;
+
+        margin-top: 18px;
+
+        text-align: center;
+
+        color: #666;
+
+        text-decoration: none;
+
+        font-size: 13px;
+
+        transition: 0.25s;
+      }
+
+      .back-home:hover {
+        color: white;
+      }
+
+      .security-note {
+        margin-top: 20px;
+
+        text-align: center;
+
+        color: #555;
+
+        font-size: 11px;
+      }
+
+      @media (max-width: 500px) {
+        body {
+          padding: 18px;
+        }
+
+        .login-box {
+          padding: 28px 20px;
+          border-radius: 20px;
+        }
+
+        .brand {
+          font-size: 29px;
+        }
+
+        .box-title {
+          font-size: 25px;
+        }
+      }
+    </style>
+    
+  </head>
+
+  <body>
+    <div class="login-wrapper">
+      
+      <div class="brand-top">
+        <a href="/" class="brand"> Cine<span>Verse</span> </a>
+
+        <div class="cinema-badge">
+          <i class="bi bi-film"></i>
+          Cinema Platform
+        </div>
+      </div>
+
+      <div class="login-box">
+        <h1 class="box-title">С возвращением 👋</h1>
+
+        <p class="subtitle">Войдите в свой аккаунт CineVerse</p>
+
+        {% if error %}
+        <div class="error">
+          <i class="bi bi-exclamation-circle"></i>
+          {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label"> Логин </label>
+
+            <div class="input-wrap">
+              <input
+                type="text"
+                name="username"
+                class="form-control"
+                placeholder="Введите логин"
+                autocomplete="username"
+                required
+              />
+
+              <i class="bi bi-person input-icon"></i>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label"> Пароль </label>
+
+            <div class="input-wrap">
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                placeholder="Введите пароль"
+                autocomplete="current-password"
+                required
+              />
+
+              <i class="bi bi-lock input-icon"></i>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-login w-100">
+            <i class="bi bi-box-arrow-in-right me-1"></i>
+            Войти в CineVerse
+          </button>
+        </form>
+
+        <div class="register-link">
+          Нет аккаунта?
+          <a href="{% url 'register' %}"> Зарегистрироваться </a>
+        </div>
+
+        <a href="/" class="back-home">
+          <i class="bi bi-arrow-left me-1"></i>
+          Вернуться к фильмам
+        </a>
+
+        <div class="security-note">
+          <i class="bi bi-shield-check"></i>
+          Ваш аккаунт защищён
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
