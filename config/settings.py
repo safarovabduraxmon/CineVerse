@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-am75e-ldco2)f48v56m9!itpd&%y09!-j_z32*4m&uidrw9e68
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["cineverse-ksqg.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "cineverse-ksqg.onrender.com"]
 
 
 # Application definition
