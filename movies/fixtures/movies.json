@@ -1,0 +1,80 @@
+[
+{
+  "model": "movies.movie",
+  "pk": 1,
+  "fields": {
+    "title": "Вышка 2",
+    "description": "Захватывающий триллер о выживании на огромной высоте.",
+    "genre": "Триллер",
+    "duration": 100,
+    "rating": "4.1",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLUsYI_i9z-ESP8MFNydpdxykftnWpsxwl1rLLJ2sRA&s=10",
+    "video_url": "https://vkvideo.ru/video_ext.php?oid=-205377012&id=456239414&hash="
+  }
+},
+{
+  "model": "movies.movie",
+  "pk": 2,
+  "fields": {
+    "title": "Человек-паук: Новый день",
+    "description": "Новое приключение Человека-паука, наполненное экшеном, опасностями и неожиданными событиями.",
+    "genre": "Боевик",
+    "duration": 130,
+    "rating": "4.5",
+    "poster": "https://avatars.mds.yandex.net/get-kinopoisk-image/9784475/9d8f64fc-dc63-43c5-9279-b6fb527426e2/600x900",
+    "video_url": "https://vkvideo.ru/video_ext.php?oid=-235144782&id=456239199&hash="
+  }
+},
+{
+  "model": "movies.movie",
+  "pk": 3,
+  "fields": {
+    "title": "Аватар: Пламя и пепел",
+    "description": "Продолжение легендарной истории Пандоры, где героев ждут новые испытания и опасности.",
+    "genre": "Фантастика",
+    "duration": 165,
+    "rating": "5.0",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt6eflgP8HA5CnSRyU_JEhmu2-GdbfRoK716mvAqTtPg&s=10",
+    "video_url": "https://vkvideo.ru/video_ext.php?oid=-221158359&id=456241770&hash="
+  }
+},
+{
+  "model": "movies.movie",
+  "pk": 4,
+  "fields": {
+    "title": "Горничная",
+    "description": "Таинственная история с неожиданными событиями и напряжённой атмосферой.",
+    "genre": "Триллер",
+    "duration": 115,
+    "rating": "4.3",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJZaZpwuR0kWTcCQUOGuJGvCoh9lICb4LxyYmrsUl1NA&s",
+    "video_url": "https://vkvideo.ru/video_ext.php?oid=-229251112&id=456240676&hash="
+  }
+},
+{
+  "model": "movies.movie",
+  "pk": 5,
+  "fields": {
+    "title": "Megen",
+    "description": "История искусственного интеллекта и человека, которая превращается в опасное противостояние.",
+    "genre": "Фантастика",
+    "duration": 102,
+    "rating": "5.0",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQtKay9LoC25_duMuOsz6s9n0SMzPp-HdvoKAAmVLetg&s=10",
+    "video_url": "https://vkvideo.ru/video_ext.php?oid=-231729433&id=456239083&hash="
+  }
+},
+{
+  "model": "movies.movie",
+  "pk": 6,
+  "fields": {
+    "title": "Бегущий человек",
+    "description": "Динамичный боевик с напряжёнными событиями, опасными испытаниями и неожиданными поворотами.",
+    "genre": "Боевик",
+    "duration": 125,
+    "rating": "4.4",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStdY10NIqF-IzCfXs2ak6nJQQ-Vr0QElMYkdbfW2975Q&s=10",
+    "video_url": "https://vkvideo.ru/video_ext.php?oid=-227596514&id=456243555&hash="
+  }
+}
+]
